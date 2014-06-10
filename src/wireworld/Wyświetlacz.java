@@ -59,9 +59,9 @@ public class Wyświetlacz extends javax.swing.JFrame {
         jTextArea1.setRows(5);
         jScrollPane1.setViewportView(jTextArea1);
 
-        jMenu.setText("File");
+        jMenu.setText("Opcje");
 
-        Open.setText("Open");
+        Open.setText("Otwórz");
         Open.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 try {
@@ -73,7 +73,7 @@ public class Wyświetlacz extends javax.swing.JFrame {
         });
         jMenu.add(Open);
 
-        Exit.setText("Exit");
+        Exit.setText("Wyjdź");
         jMenu.add(Exit);
 
         jMenuBar.add(jMenu);
