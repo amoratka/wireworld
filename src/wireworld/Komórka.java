@@ -17,10 +17,6 @@ public class Komórka {
         return this.stanKomórki;
     }
 
-    public void wyświetlStan() {
-        this.stanKomórki.wyświetlStan();
-    }
-
     public void kolor() {
         this.kolor = stanKomórki.kolor();
     }

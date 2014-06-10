@@ -9,11 +9,6 @@ public class Ogon implements Stan {
     private int symbol;
 
     @Override
-    public void wyświetlStan() {
-        System.out.println(" Stan : Ogon");
-    }
-
-    @Override
     public Color kolor() {
         this.kolor = blue;
         return blue;

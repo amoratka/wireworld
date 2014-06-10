@@ -6,12 +6,12 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JPanel;
 
-class DrawPanel extends JPanel {
+class RysujPanel extends JPanel {
 
     int wymiar = 20;
     Siatka siatka = new Siatka();
 
-    private void doDrawing(Graphics g) throws InterruptedException {
+    private void rysuj(Graphics g) throws InterruptedException {
 
         for (int i = 0; i < siatka.r; i++) {
             for (int j = 0; j < siatka.c; j++) {
@@ -35,9 +35,9 @@ class DrawPanel extends JPanel {
 
         super.paintComponent(g);
         try {
-            doDrawing(g);
+            rysuj(g);
         } catch (InterruptedException ex) {
-            Logger.getLogger(DrawPanel.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(RysujPanel.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 }

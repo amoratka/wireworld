@@ -18,7 +18,6 @@ import static wireworld.ObsługaSiatki.odczytdanych;
 
 public class Wyświetlacz extends javax.swing.JFrame {
 
-    boolean przerwa = false;
     private javax.swing.JMenuItem Exit;
     private javax.swing.JMenuItem Open;
     private javax.swing.JMenu jMenu;
@@ -27,7 +26,7 @@ public class Wyświetlacz extends javax.swing.JFrame {
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JFileChooser fileChooser;
     public Siatka siatka = new Siatka();
-    DrawPanel panel = new DrawPanel();
+    RysujPanel panel = new RysujPanel();
     public JButton start;
     public ObsługaSiatki obsługa = new ObsługaSiatki();
 
@@ -118,17 +117,17 @@ public class Wyświetlacz extends javax.swing.JFrame {
             @Override
             public void run() {
                 int generacje = 5;
-
+                int czas = 3;
                 for (int i = 1; i < generacje + 1; i++) {
                     try {
-                        if (przerwa == false) {
+                        
                             Siatka nowaSiatka = ObsługaSiatki.nowaSiatka(panel.siatka);
                             panel.siatka = nowaSiatka;
-                            TimeUnit.SECONDS.sleep(3);
+                            TimeUnit.SECONDS.sleep(czas);
                             panel.repaint();
 
                             ObsługaSiatki.zapisz(nowaSiatka, "plik", i);
-                        }
+                       
                     } catch (InterruptedException | IOException ex) {
                         Logger.getLogger(Wyświetlacz.class.getName()).log(Level.SEVERE, null, ex);
                     }

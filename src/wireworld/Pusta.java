@@ -9,11 +9,6 @@ public class Pusta implements Stan {
     private int symbol;
     private Stan stanKomórki;
 
-    @Override
-    public void wyświetlStan() {
-        System.out.println(" Stan : Pusta");
-    }
-
     public Color kolor() {
         this.kolor = black;
         return black;

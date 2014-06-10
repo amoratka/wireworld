@@ -8,10 +8,6 @@ public class Głowa implements Stan {
     private final Color kolor = red;
     private final int symbol = 2;
 
-    @Override
-    public void wyświetlStan() {
-        System.out.println(" Stan : Głowa");
-    }
 
     @Override
     public Color kolor() {

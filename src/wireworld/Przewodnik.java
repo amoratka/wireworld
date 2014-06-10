@@ -9,10 +9,6 @@ public class Przewodnik implements Stan {
     private int symbol;
     private Stan stanKomórki;
 
-    @Override
-    public void wyświetlStan() {
-        System.out.println(" Stan : Przewodnik");
-    }
 
     @Override
     public Color kolor() {
