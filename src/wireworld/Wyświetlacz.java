@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package wireworld;
 
 import java.awt.Color;
@@ -21,12 +16,9 @@ import javax.swing.JFileChooser;
 import javax.swing.border.LineBorder;
 import static wireworld.ObsługaSiatki.odczytdanych;
 
-/**
- *
- * @author Kamilka
- */
 public class Wyświetlacz extends javax.swing.JFrame {
 
+    boolean przerwa = false;
     private javax.swing.JMenuItem Exit;
     private javax.swing.JMenuItem Open;
     private javax.swing.JMenu jMenu;
@@ -62,15 +54,15 @@ public class Wyświetlacz extends javax.swing.JFrame {
         jMenu.setText("Opcje");
 
         Open.setText("Otwórz");
-        Open.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                try {
-                    OpenActionPerformed(evt);
-                } catch (IOException ex) {
-                    Logger.getLogger(Wyświetlacz.class.getName()).log(Level.SEVERE, null, ex);
-                }
+        Open.addActionListener((java.awt.event.ActionEvent evt) -> {
+            try {
+                OpenActionPerformed(evt);
+
+            } catch (IOException ex) {
+                Logger.getLogger(Wyświetlacz.class.getName()).log(Level.SEVERE, null, ex);
             }
         });
+
         jMenu.add(Open);
 
         Exit.setText("Wyjdź");
@@ -79,25 +71,16 @@ public class Wyświetlacz extends javax.swing.JFrame {
         jMenuBar.add(jMenu);
 
         setJMenuBar(jMenuBar);
-        /*
-         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-         getContentPane().setLayout(layout);
-         layout.setHorizontalGroup(
-         layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-         .addGap(0, 400, Short.MAX_VALUE)
-         );
-         layout.setVerticalGroup(
-         layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-         .addGap(0, 300, Short.MAX_VALUE)
-         );
-         */
+
         start = new JButton("start");
         start.setPreferredSize(new Dimension(100, 100));
         this.add(start);
+
         start.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 try {
                     startMouseClicked(evt);
+
                 } catch (InterruptedException ex) {
                     Logger.getLogger(Wyświetlacz.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -106,13 +89,13 @@ public class Wyświetlacz extends javax.swing.JFrame {
 
         panel.siatka = siatka;
         panel.setBorder(new LineBorder(Color.black, 1, true));
-        panel.setBounds(0, 0, 500, 500);
+        panel.setBounds(0, 0, 100, 100);
         panel.setLayout(new GridLayout());
         panel.setPreferredSize(new Dimension(1000, 500));
         this.add(panel);
 
         pack();
-    }// </editor-fold>    
+    }
 
     private void OpenActionPerformed(java.awt.event.ActionEvent evt) throws IOException {
         int returnVal = fileChooser.showOpenDialog(this);
@@ -138,13 +121,14 @@ public class Wyświetlacz extends javax.swing.JFrame {
 
                 for (int i = 1; i < generacje + 1; i++) {
                     try {
-                        Siatka nowaSiatka = ObsługaSiatki.nowaSiatka(panel.siatka);
-                        panel.siatka = nowaSiatka;
-                        TimeUnit.SECONDS.sleep(3);
-                        panel.repaint();
-                       
-            ObsługaSiatki.zapisz(nowaSiatka, "plik", i);
+                        if (przerwa == false) {
+                            Siatka nowaSiatka = ObsługaSiatki.nowaSiatka(panel.siatka);
+                            panel.siatka = nowaSiatka;
+                            TimeUnit.SECONDS.sleep(3);
+                            panel.repaint();
 
+                            ObsługaSiatki.zapisz(nowaSiatka, "plik", i);
+                        }
                     } catch (InterruptedException | IOException ex) {
                         Logger.getLogger(Wyświetlacz.class.getName()).log(Level.SEVERE, null, ex);
                     }
@@ -153,4 +137,5 @@ public class Wyświetlacz extends javax.swing.JFrame {
             }
         }.start();
     }
+
 }

@@ -3,10 +3,6 @@ package wireworld;
 import java.awt.Color;
 import static java.awt.Color.red;
 
-/**
- *
- * @author Kamilka
- */
 public class Głowa implements Stan {
 
     private final Color kolor = red;
@@ -30,11 +26,8 @@ public class Głowa implements Stan {
 
     @Override
     public Stan nastepnyStan(int ilość) {
-        Stan Ogon =new Ogon();
+        Stan Ogon = new Ogon();
         return new Ogon();
     }
 
-    
-
-    
 }

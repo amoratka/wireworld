@@ -1,9 +1,5 @@
 package wireworld;
 
-/**
- *
- * @author Kamilka
- */
 public class Sąsiedztwo {
 
     public static void otoczenie(int r, int c, Siatka siatka, int tab[]) {
@@ -33,4 +29,3 @@ public class Sąsiedztwo {
         }
     }
 }
-//zwraca tablice z sąsiadami

@@ -2,22 +2,18 @@ package wireworld;
 
 import java.awt.Color;
 
-/**
- *
- * @author Kamilka
- */
 public class Komórka {
 
     Stan stanKomórki;
     private Color kolor;
     int symbol;
 
-    public void setState(Stan stan) {
+    public void ustawStan(Stan stan) {
         this.stanKomórki = stan;
-        this.symbol=stan.symbol();
+        this.symbol = stan.symbol();
     }
 
-    public Stan getState() {
+    public Stan podajStan() {
         return this.stanKomórki;
     }
 
@@ -29,9 +25,8 @@ public class Komórka {
         this.kolor = stanKomórki.kolor();
     }
 
-    public int symbol() {        
+    public int symbol() {
         return this.symbol;
     }
-    
 
 }

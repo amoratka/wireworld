@@ -1,7 +1,5 @@
 package wireworld;
 
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -9,10 +7,6 @@ import java.io.PrintWriter;
 import java.io.StreamTokenizer;
 import static wireworld.Sąsiedztwo.otoczenie;
 
-/**
- *
- * @author Kamilka
- */
 public class ObsługaSiatki {
 
     public static int wartosc;
@@ -25,30 +19,32 @@ public class ObsługaSiatki {
         Stan Pusta = new Pusta();
 
         StreamTokenizer znak = new StreamTokenizer(pob);
+
         znak.nextToken();
         siatka.r = (int) znak.nval;
         znak.nextToken();
         siatka.c = (int) znak.nval;
+
         siatka.tab = new Komórka[siatka.r * siatka.c];
-        int i;
-        for (i = 0; i < siatka.r * siatka.c; i++) {
+
+        for (int i = 0; i < siatka.r * siatka.c; i++) {
 
             znak.nextToken();
             wartosc = (int) znak.nval;
+
             if (wartosc == 1) {
-                komórka.setState(Ogon);
+                komórka.ustawStan(Ogon);
             } else if (wartosc == 2) {
-                komórka.setState(Głowa);
+                komórka.ustawStan(Głowa);
             } else if (wartosc == 4) {
-                komórka.setState(Przewodnik);
+                komórka.ustawStan(Przewodnik);
             } else {
-                komórka.setState(Pusta);
+                komórka.ustawStan(Pusta);
             }
+
             siatka.tab[i] = new Komórka();
-            siatka.tab[i].setState(komórka.getState());
-
+            siatka.tab[i].ustawStan(komórka.podajStan());
         }
-
     }
 
     public static void zapisz(Siatka siatka, String nazwa, int nr_generacji) throws IOException {
@@ -77,9 +73,7 @@ public class ObsługaSiatki {
                 plik.println();
             }
         }
-
         plik.close();
-
     }
 
     public static void wypisz(Siatka siatka) {
@@ -95,12 +89,13 @@ public class ObsługaSiatki {
         nowaSiatka.r = siatka.r;
         nowaSiatka.c = siatka.c;
         nowaSiatka.tab = new Komórka[nowaSiatka.r * nowaSiatka.c];
-        int i;
+
         Komórka komórka = new Komórka();
         Stan Głowa = new Głowa();
         Stan Ogon = new Ogon();
         Stan Pusta = new Pusta();
         Stan Przewodnik = new Przewodnik();
+
         int c;
         int r;
         int tab[];
@@ -109,7 +104,8 @@ public class ObsługaSiatki {
 
         tab = new int[n];
         tab[0] = n;
-        for (i = 0; i < siatka.r * siatka.c; i++) {
+
+        for (int i = 0; i < siatka.r * siatka.c; i++) {
 
             c = i % siatka.c + 1;
             r = i / siatka.c + 1;
@@ -125,10 +121,8 @@ public class ObsługaSiatki {
             }
 
             nowaSiatka.tab[i] = new Komórka();
-            nowaSiatka.tab[i].setState(siatka.tab[i].stanKomórki.nastepnyStan(głowa));
+            nowaSiatka.tab[i].ustawStan(siatka.tab[i].stanKomórki.nastepnyStan(głowa));
         }
         return nowaSiatka;
-
     }
-
 }
