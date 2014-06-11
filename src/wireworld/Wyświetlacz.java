@@ -116,8 +116,8 @@ public class Wyświetlacz extends javax.swing.JFrame {
         new Thread() {
             @Override
             public void run() {
-                int generacje = 5;
-                int czas = 3;
+                int generacje = 1000;
+                int czas = 1;
                 for (int i = 1; i < generacje + 1; i++) {
                     try {
                         

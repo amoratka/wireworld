@@ -9,7 +9,7 @@ import static wireworld.Sąsiedztwo.otoczenie;
 
 public class ObsługaSiatki {
 
-    public static int wartosc;
+    
 
     public static void odczytdanych(FileReader pob, Siatka siatka) throws IOException {
         Komórka komórka = new Komórka();
@@ -18,8 +18,8 @@ public class ObsługaSiatki {
         Stan Przewodnik = new Przewodnik();
         Stan Pusta = new Pusta();
 
-        StreamTokenizer znak = new StreamTokenizer(pob);
-
+        StreamTokenizer znak = new StreamTokenizer(pob);    
+        int wartosc;
         znak.nextToken();
         siatka.r = (int) znak.nval;
         znak.nextToken();
